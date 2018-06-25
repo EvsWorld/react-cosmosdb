@@ -1,5 +1,4 @@
-const Hero = require('./hero-model');
-const ReadPreference = require('mongodb').ReadPreference;
+const Hero = require('./hero-model');const ReadPreference = require('mongodb').ReadPreference;
 
 require('./mongo').connect();
 
@@ -54,5 +53,4 @@ function destroy(req, res) {
       res.status(500).send(err);
     });
 }
-
 module.exports = { get, create, update, destroy };

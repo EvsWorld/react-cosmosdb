@@ -5,9 +5,14 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "bulma": "^0.5.0",
+    "concurrently": "^3.6.0",
     "cookie-parser": "^1.4.3",
     "debug": "^3.0.0",
     "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-flowtype": "^2.49.3",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.10.0",
     "express": "^4.15.3",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.5",
@@ -16,10 +21,11 @@
     "react-dom": "^15.6.1"
   },
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "react-scripts": "1.0.10"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"react-scripts start\" \"nodemon server/server.js\"",
     "build": "react-scripts build && mv build server",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

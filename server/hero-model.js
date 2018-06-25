@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
+mongoose.Promise = global.Promise;
 const heroSchema = new Schema(
   {
     id: { type: Number, required: true, unique: true },
