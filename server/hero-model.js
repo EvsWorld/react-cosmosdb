@@ -1,15 +1,19 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import { Schema as _Schema, Promise as _Promise, model } from 'mongoose';
+const Schema = _Schema;
 
-mongoose.Promise = global.Promise;
-const heroSchema = new Schema(
-  {
-    id: { type: Number, required: true, unique: true },
-    name: String,
-    saying: String
+// mongoose.Promise = global.Promise;
+_Promise = Promise;
+const heroSchema = new Schema({
+  id: {
+    type: Number,
+    required: true,
+    unique: true
   },
-  { autoIndex: false }
-);
+  name: String,
+  saying: String
+}, {
+  autoIndex: false
+});
 
-const Hero = mongoose.model('Hero', heroSchema);
-module.exports = Hero;
+const Hero = model('Hero', heroSchema);
+export default Hero;

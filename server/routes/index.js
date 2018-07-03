@@ -1,22 +1,22 @@
-const express = require('express');
-const router = express.Router();
+import { Router } from 'express';
+const router = Router();
 
-const heroesService = require('../hero-service');
+import { get, create, update, destroy } from '../hero-service';
 
 router.get('/heroes', (req, res) => {
-  heroesService.get(req, res);
+  get(req, res);
 });
 
 router.put('/hero', (req, res) => {
-  heroesService.create(req, res);
+  create(req, res);
 });
 
 router.post('/hero', (req, res) => {
-  heroesService.update(req, res);
+  update(req, res);
 });
 
 router.delete('/hero/:id', (req, res) => {
-  heroesService.destroy(req, res);
+  destroy(req, res);
 });
 
-module.exports = router;
+export default router;

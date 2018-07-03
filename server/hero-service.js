@@ -1,6 +1,7 @@
-const Hero = require('./hero-model');const ReadPreference = require('mongodb').ReadPreference;
+const Hero = require('./hero-model').default;
+const ReadPreference = require('mongodb').ReadPreference;
 
-require('./mongo').connect();
+require('./mongo').default.connect();
 
 function get(req, res) {
   const docquery = Hero.find({}).read(ReadPreference.NEAREST);

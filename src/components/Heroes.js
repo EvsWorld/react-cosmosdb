@@ -22,8 +22,9 @@ class Heroes extends Component {
     this.handleSelect = this.handleSelect.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     api.get().then(json => this.setState({ heroes: json }));
+    // this.setState({ heroes: await api.get() });
   }
 
   handleSelect(hero) {
@@ -54,33 +55,21 @@ class Heroes extends Component {
   handleCancel() {
     this.setState({ addingHero: false, selectedHero: null });
   }
-
-  handleSave() {
+  
+  async handleSave() {
     let heroes = this.state.heroes;
 
     if (this.state.addingHero) {
-      api
-        .create(this.state.selectedHero)
-        .then(result => {
-          console.log('Successfully created!');
-
-          heroes.push(this.state.selectedHero);
-          this.setState({
-            heroes: heroes,
-            selectedHero: null,
-            addingHero: false
-          });
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      await api.create(this.state.selectedHero)
+      heroes.push(this.state.selectedHero);
+      this.setState({
+        heroes: heroes,
+        selectedHero: null,
+        addingHero: false
+      });
     } else {
-      api
-        .update(this.state.selectedHero)
-        .then(() => {
-          this.setState({ selectedHero: null });
-        })
-        .catch(err => {});
+      await api.update(this.state.selectedHero)
+      this.setState({ selectedHero: null });
     }
   }
 
