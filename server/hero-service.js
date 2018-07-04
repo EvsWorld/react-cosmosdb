@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Hero = require('./hero-model');
 const ReadPreference = require('mongodb').ReadPreference;
 
-// require('./mongo').connect();
-mongoose.connect('mongodb://azurecosmosdbaccountevan:sA4vaugVTvQbTCCvscsACwRmVTd0ReW6d4b8BaCTb61sOmadCsjDa4UcUaRATeEl2tWOYuXfHZJ7qkWvBXCOaQ==@azurecosmosdbaccountevan.documents.azure.com:10255/?ssl=true&replicaSet=globaldb');
+require('./mongo').connect();
+
 
 function get(req, res) {
   const docquery = Hero.find({}).read(ReadPreference.NEAREST);
