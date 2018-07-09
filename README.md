@@ -78,3 +78,6 @@ npm start
 Your entire application is now running on port 3001.
 
 Everything in the `server` folder is what is needed in production. Those are all of the build assets. 
+
+#### Note on proxy
+That "proxy": "http://localhost:3001" in the package.json tells webpack development server where to look for its backend. So your intended backend serv has to be there. 
