@@ -10,9 +10,9 @@ import {
 } from 'react-router-dom'
 
 import HomePage from './components/HomePage';
-// import LoginPage from './containers/LoginPage';
-// import LogoutFunction from './containers/LogoutFunction';
-// import SignUpPage from './containers/SignUpPage';
+import LoginPage from './containers/LoginPage';
+import LogoutFunction from './containers/LogoutFunction';
+import SignUpPage from './containers/SignUpPage';
 import DashboardPage from './containers/DashboardPage';
 import Auth from './modules/Auth';
 import Heroes from './components/Heroes';
@@ -59,7 +59,7 @@ class Main extends Component {
 
   componentDidMount() {
     // check if user is logged in on refresh
-    // this.toggleAuthenticateStatus()
+    this.toggleAuthenticateStatus()
   }
 
   toggleAuthenticateStatus() {
@@ -91,25 +91,18 @@ class Main extends Component {
 
             </div>
 
-            {/* <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} /> */}
-            { /* <PrivateRoute path="/dashboard" component={DashboardPage}/> */ }
-            {/* <PrivateRoute path="/heros" component={Heroes}/> */}
-            {/* <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} /> */}
-            {/* <LoggedOutRoute path="/signup" component={SignUpPage}/> */}
-            {/* <Route path="/logout" component={LogoutFunction}/> */}
+            <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} /> 
+            <PrivateRoute path="/dashboard" component={DashboardPage}/> 
+            <PrivateRoute path="/heros" component={Heroes}/>
+            <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
+            <LoggedOutRoute path="/signup" component={SignUpPage}/>
+            <Route path="/logout" component={LogoutFunction}/>
             
-            <Route exact path='/' component={HomePage} />
+            {/* <Route exact path='/' component={HomePage} />
             <Route path='/heroes' component={Heroes} />
             <Route path='/dashboard' component={DashboardPage} />
-            {/* <Route path='/login' component={Login} /> */}
+            <Route path='/login' component={Login} /> */}
 
-            {/* Test  */}
-            {/* <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} /> */}
-            {/* <PrivateRoute path="/dashboard" component={DashboardPage}/> */}
-            {/* <PrivateRoute path="/heros" component={Heros}/> */}
-            {/* <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} /> */}
-            {/* <LoggedOutRoute path="/signup" component={SignUpPage}/> */}
-            {/* <Route path="/logout" component={LogoutFunction}/> */}
           </div>
 
         </Router>
@@ -118,3 +111,4 @@ class Main extends Component {
 }
 
 export default Main;
+  
