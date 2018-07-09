@@ -1,7 +1,7 @@
 class Auth {
   static async fetchAsync() {
     // await response of fetch call
-    let response = await fetch('https://localhost:3001/checkifloggedin', { 
+    let response = await fetch('https://localhost:3001/myauth/checkifloggedin', { 
       headers: {
         'Content-Type': 'application/json'
       }

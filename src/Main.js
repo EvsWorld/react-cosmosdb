@@ -53,7 +53,7 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      authenticated: true
+      authenticated: false
     }
   };
 
@@ -84,7 +84,8 @@ class Main extends Component {
                 </div>
               ) : (
                 <div >
-                  <Link to="/login">Log in</Link>
+                  <a href="https://localhost:3001/login"> Login?? </a>
+                  {/* <Link to="/login">Log in</Link> */}
                   <Link to="/signup">Sign up</Link>
                 </div>
               )}
@@ -98,11 +99,6 @@ class Main extends Component {
             <LoggedOutRoute path="/signup" component={SignUpPage}/>
             <Route path="/logout" component={LogoutFunction}/>
             
-            {/* <Route exact path='/' component={HomePage} />
-            <Route path='/heroes' component={Heroes} />
-            <Route path='/dashboard' component={DashboardPage} />
-            <Route path='/login' component={Login} /> */}
-
           </div>
 
         </Router>

@@ -11,7 +11,9 @@ class HomePage extends React.Component {
   render() {
     return (
       <div className="container">
-        <div title="React Application" subtitle="This is the home page." />
+        <div />
+        <h5> "React Application" </h5>        
+        <h5> "This is the home page." </h5>
           {Auth.isUserAuthenticated() ? (
             <divText style={{ fontSize: '16px', color: 'green' }}>Welcome! You are logged in.</divText>
           ) : (

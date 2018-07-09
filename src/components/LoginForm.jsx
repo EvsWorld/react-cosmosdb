@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Card, CardText } from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
 
 const LoginForm = ({
   onSubmit,
@@ -13,7 +10,7 @@ const LoginForm = ({
   user,
   toggleAuthenticateStatus
 }) => (
-  <Card className="container">
+  <div className="container">
     <form action="/" onSubmit={onSubmit}>
       <h2 className="card-heading">Login</h2>
 
@@ -21,7 +18,7 @@ const LoginForm = ({
       {errors.summary && <p className="error-message">{errors.summary}</p>}
 
       <div className="field-line">
-        <TextField
+        <div
           floatingLabelText="Email"
           name="email"
           errorText={errors.email}
@@ -31,7 +28,7 @@ const LoginForm = ({
       </div>
 
       <div className="field-line">
-        <TextField
+        <div
           floatingLabelText="Password"
           type="password"
           name="password"
@@ -42,12 +39,12 @@ const LoginForm = ({
       </div>
 
       <div className="button-line">
-        <RaisedButton type="submit" label="Log in" primary />
+        <button type="submit" label="Log in" primary />
       </div>
 
-      <CardText>Don't have an account? <Link to={'/signup'}>Create one</Link>.</CardText>
+      <div>Don't have an account? <Link to={'/signup'}>Create one</Link>.</div>
     </form>
-  </Card>
+  </div>
 );
 
 LoginForm.propTypes = {
