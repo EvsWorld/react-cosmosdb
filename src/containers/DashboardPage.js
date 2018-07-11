@@ -21,7 +21,7 @@ class DashboardPage extends React.Component {
    * This method will be executed after initial rendering.
    */
   componentDidMount() {
-    const xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();/* 
     xhr.open('get', '/myauth/checkifloggedin');
     xhr.setRequestHeader('Content-type', 'application/json');
     // set the authorization HTTP header
@@ -34,7 +34,7 @@ class DashboardPage extends React.Component {
         });
       }
     });
-    xhr.send();
+    xhr.send() */;
   }
 
   /**

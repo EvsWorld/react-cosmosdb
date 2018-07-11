@@ -23,10 +23,9 @@
     "react-scripts": "1.0.10"
   },
   "scripts": {
-    "start": "HTTPS=true react-scripts start",
+    "start": "PORT=3001 HTTPS=true react-scripts start",
     "build": "react-scripts build && mv build server",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "proxy": "https://localhost:3001"
+  }
 }

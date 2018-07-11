@@ -34,6 +34,15 @@ class LoginPage extends React.Component {
     this.changeUser = this.changeUser.bind(this);
   }
 
+
+  processFormEvan(event) {
+    // TODO: submit email and password to the url below:
+    // https://fsint1.dnv.com/adfs/ls/?SAMLRequest=fZFNS8QwEIb%2fSsg9TbMf2g3dwrKLUFARFQ%2feYjJhA21SM%2bm6%2fnuz7UmFvQ7vxzwzNaq%2bG%2bRuTEf%2fDJ8jYCLtYUudYUabW2PFihm71GxlrWHVotqwjVpsxFJV4kMbSt4gogt%2bSxdFSUmLOELrMSmf8qgUFStvmShfxY1clXJdFuuqeqfkkHucV2lyHlMaUHJu0fkkCuNPhQ49V8Yi75BTsg8e4RI4Ri%2bDQofSqx5QJi1fdg%2f3MndLPYvk6HEA7ayDvN257zzKifG6e4ghBR062tQTQ5yt100KEeKFgTYXhgkBzn8RsubkNCBPccRU8zm%2fqefLP%2bbU9vAUOqe%2fyV2IvbrCKQoxTfJ37CT9TbvruvC1j6ASbGluA0p4U%2fP%2fL25%2bAA%3d%3d&RelayState=9cce86fc-7869-421a-aa20-d04f79399741
+  }
+
+
+
+
   /**
    * Process the form.
    *
