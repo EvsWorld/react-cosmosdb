@@ -73,20 +73,20 @@ class Main extends Component {
           <div>
             <div className="top-bar">
               <div className="top-bar-left">
-                <Link to="/">React App</Link>
+                <Link to="/">"/" Route Link</Link>
               </div>
               {this.state.authenticated ? (
-                <div >
-                  <Link to="/">Homepage</Link>
-                  <Link to="/dashboard">Dashboard</Link>
-                  <Link to="/heros">Heros</Link>
-                  <Link to="/logout">Log out</Link>
+                <div className="links">
+                  <Link to="/">   /homepage</Link>
+                  <Link to="/dashboard">   /dashboard</Link>
+                  <Link to="/heros">   /heros</Link>
+                  <Link to="/logout">    /logout</Link>
                 </div>
               ) : (
-                <div >
-                  <a href="https://localhost:3000/login"> Login?? </a>
-                  {/* <Link to="/login">Log in</Link> */}
-                  <Link to="/signup">Sign up</Link>
+                <div className="links">
+                  <Link to="/login"> Login?? </Link>
+                  <Link to="/login">Log in</Link>
+                  <Link to="/signup">/signup</Link>
                 </div>
               )}
 

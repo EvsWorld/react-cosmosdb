@@ -1,14 +1,22 @@
 class Auth {
-  static async fetchAsync() {
+  static async isUserAuthenticated() {
     // await response of fetch call
-    let response = await fetch('https://localhost:3000/myauth/checkifloggedin', { 
-      headers: {
-        'Content-Type': 'application/json'
-      }
-   });
+    let response = await fetch('/myauth/isloggedin', 
+    {
+      method: "GET",
+      headers: { "Content-Type": "text/plain" },
+   } );
     // only proceed once promise is resolved
-    let data = await response.json();
+    let data = await response.text();
     // only proceed once second promise is resolved
+    console.log('response header = ', response.headers.get('Content-Type'));
+    console.log('response.headers.get(\'Date\') = ', response.headers.get('Date'));
+
+    console.log('response.status = ', response.status);
+    console.log('response.statusText = ', response.statusText);
+    console.log('response.type = ', response.type);
+    console.log('response.url = ', response.url);
+    console.log('isUserAuthenticated will return ', data)
     return data;
   }
   /**
@@ -25,20 +33,20 @@ class Auth {
    *
    * @returns {boolean}
    */
-  static isUserAuthenticated() {
+/*   static async isUserAuthenticatedaold() {
     // trigger async function
     // log response or catch error of fetch promise
-    const fetchResult = this.fetchAsync()
+    const user = await this.fetchAsync()
         .then(data => {
           console.log('from fetchAsync(), data = ', data)
           return data;
         })
         .catch(reason => console.log(reason.message));
+    console.log('user = ', user);
+    console.log( 'undefined === true = ', undefined === true);
+    return user;
 
-    // console.log('fetchResult = ', fetchResult);
-    // console.log('fetchResult.user !== null = ', fetchResult.user !== null);
-  
-  }
+  } */
   /**
    * Deauthenticate a user. Remove a token from Local Storage.
    *
