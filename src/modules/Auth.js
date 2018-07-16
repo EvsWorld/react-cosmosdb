@@ -10,9 +10,8 @@ class Auth {
     // only proceed once promise is resolved
     let data = await response.text();
     // only proceed once second promise is resolved
-    console.log('response header = ', response.headers.get('Content-Type'));
+    console.log('\n\n\nresponse header.get(\'Content-Type\') = ', response.headers.get('Content-Type'));
     console.log('response.headers.get(\'Date\') = ', response.headers.get('Date'));
-
     console.log('response.status = ', response.status);
     console.log('response.statusText = ', response.statusText);
     console.log('response.type = ', response.type);
@@ -32,13 +31,12 @@ class Auth {
     const user = await Auth.fetchAsync ()
         .then(data => {
           console.log('from fetchAsync(), data = ', data)
-          // return data;
-          return false;
+          return data;
+          // return false;
         })
         .catch(reason => console.log(reason.message));
     console.log('user = ', user);
-    // return user;
-    return false 
+    return user;
 
 
   } 
