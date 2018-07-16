@@ -5,6 +5,7 @@ class HomePage extends React.Component {
 
   componentDidMount() {
     // update authenticated state on logout
+    //TODO: fix this
     this.props.toggleAuthenticateStatus()
   }
 

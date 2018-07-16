@@ -1,14 +1,17 @@
+import  _  from 'lodash';
+import { isEmpty } from 'lodash';
+
 class Auth {
   static async toggleAuthenticateStatus () {
     // await response of fetch call
     let response = await fetch('/myauth/isloggedin', 
       {
         method: "GET",
-        headers: { "Content-Type": "text/plain" },
+        headers: { "Content-Type": "application/json" },
       }
     );
     // only proceed once promise is resolved
-    let data = response.text();
+    let data = response.json();
     // only proceed once second promise is resolved
     console.log('\n\n\nresponse header.get(\'Content-Type\') = ', response.headers.get('Content-Type'));
     console.log('response.headers.get(\'Date\') = ', response.headers.get('Date'));
@@ -28,7 +31,10 @@ class Auth {
  static async isUserAuthenticated () {
    return await this.toggleAuthenticateStatus()
    .then( data => {
-      return data;
+      console.log('from isUserAuthenticated(), data = ', data)
+      console.log('from isUserAuthenticated(), !isEmpty(data) = ', !isEmpty(data));
+      const isUserLoggedIn = !isEmpty(data);
+      return isUserLoggedIn;
    } )
    .catch( reason => console.log(reason.message));
  } 

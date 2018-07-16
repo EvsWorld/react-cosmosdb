@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import routes from './routes.js';
 
+
 import {
   BrowserRouter as Router,
   Route,
@@ -8,6 +9,8 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom'
+import  _  from 'lodash';
+import { isEmpty } from 'lodash';
 
 import HomePage from './components/HomePage';
 import LoginPage from './containers/LoginPage';
@@ -19,7 +22,7 @@ import Heroes from './components/Heroes';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
-    (() => {return false })() ? (
+    Auth.isUserAuthenticated ? (
       <Component {...props} {...rest} />
     ) : (
       <Redirect to={{
@@ -32,7 +35,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 const LoggedOutRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
-   (() => {return false })()  ? (
+ Auth.isUserAuthenticated ? (
       <Redirect to={{
         pathname: '/',
         state: { from: props.location }
@@ -56,16 +59,16 @@ class Main extends Component {
       authenticated: false
     }
   };
-
+  
   // check if user is logged in on refresh
   componentDidMount() {
     // check authenticated status and toggle state based on that
     Auth.toggleAuthenticateStatus()
     .then(data => {
-      console.log('from fetchAsync(), data = ', data)
-      // return data;
-      // return false;
-      this.setState({ authenticated: data})
+      console.log('from toggleAuthenticateStatus(), data = ', data)
+      console.log('from toggleAuthenticateStatus(), !isEmpty(data) = ', !isEmpty(data));
+      const isUserLoggedIn = !isEmpty(data);
+      this.setState({ authenticated: isUserLoggedIn})
     })
     .catch(reason => console.log(reason.message));
   } 
@@ -87,6 +90,7 @@ class Main extends Component {
                 </div>
               ) : (
                 <div className="links">
+                <a href="https://localhost:3000/login"> Login?? </a>
                   <Link to="/login"> Login?? </Link>
                   <Link to="/login">Log in</Link>
                   <Link to="/signup">/signup</Link>
