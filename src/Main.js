@@ -19,7 +19,7 @@ import Heroes from './components/Heroes';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
-    Auth.isUserAuthenticated() ? (
+    (() => {return false })() ? (
       <Component {...props} {...rest} />
     ) : (
       <Redirect to={{
@@ -32,7 +32,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 const LoggedOutRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
-    Auth.isUserAuthenticated() ? (
+   (() => {return false })()  ? (
       <Redirect to={{
         pathname: '/',
         state: { from: props.location }
@@ -57,15 +57,18 @@ class Main extends Component {
     }
   };
 
+  // check if user is logged in on refresh
   componentDidMount() {
-    // check if user is logged in on refresh
-    this.toggleAuthenticateStatus()
-  }
-
-  toggleAuthenticateStatus() {
     // check authenticated status and toggle state based on that
-    this.setState({ authenticated: Auth.isUserAuthenticated() })
-  }
+    Auth.toggleAuthenticateStatus()
+    .then(data => {
+      console.log('from fetchAsync(), data = ', data)
+      // return data;
+      // return false;
+      this.setState({ authenticated: data})
+    })
+    .catch(reason => console.log(reason.message));
+  } 
 
   render() {
     return (
@@ -92,10 +95,10 @@ class Main extends Component {
 
             </div>
 
-            <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} /> 
+            <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => {return false}} /> 
             <PrivateRoute path="/dashboard" component={DashboardPage}/> 
             <PrivateRoute path="/heros" component={Heroes}/>
-            <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
+            <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={() => {return false}} />
             <LoggedOutRoute path="/signup" component={SignUpPage}/>
             <Route path="/logout" component={LogoutFunction}/>
             

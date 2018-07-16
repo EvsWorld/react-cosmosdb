@@ -1,5 +1,5 @@
 class Auth {
-  static async fetchAsync () {
+  static async toggleAuthenticateStatus () {
     // await response of fetch call
     let response = await fetch('/myauth/isloggedin', 
       {
@@ -8,7 +8,7 @@ class Auth {
       }
     );
     // only proceed once promise is resolved
-    let data = await response.text();
+    let data = response.text();
     // only proceed once second promise is resolved
     console.log('\n\n\nresponse header.get(\'Content-Type\') = ', response.headers.get('Content-Type'));
     console.log('response.headers.get(\'Date\') = ', response.headers.get('Date'));
@@ -25,21 +25,13 @@ class Auth {
    * @returns {boolean}
    */
 
-  static async isUserAuthenticated () {
-    // trigger async function
-    // log response or catch error of fetch promise
-    const user = await Auth.fetchAsync ()
-        .then(data => {
-          console.log('from fetchAsync(), data = ', data)
-          return data;
-          // return false;
-        })
-        .catch(reason => console.log(reason.message));
-    console.log('user = ', user);
-    return user;
-
-
-  } 
+ static async isUserAuthenticated () {
+   return await this.toggleAuthenticateStatus()
+   .then( data => {
+      return data;
+   } )
+   .catch( reason => console.log(reason.message));
+ } 
 
   /**
    * Authenticate a user. Save a token string in Local Storage
