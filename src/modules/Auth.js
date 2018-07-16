@@ -1,11 +1,12 @@
 class Auth {
-  static async isUserAuthenticated() {
+  static async fetchAsync () {
     // await response of fetch call
     let response = await fetch('/myauth/isloggedin', 
-    {
-      method: "GET",
-      headers: { "Content-Type": "text/plain" },
-   } );
+      {
+        method: "GET",
+        headers: { "Content-Type": "text/plain" },
+      }
+    );
     // only proceed once promise is resolved
     let data = await response.text();
     // only proceed once second promise is resolved
@@ -19,6 +20,29 @@ class Auth {
     console.log('isUserAuthenticated will return ', data)
     return data;
   }
+    /**
+   * Check if a user is authenticated - check if a token is saved in Local Storage
+   *
+   * @returns {boolean}
+   */
+
+  static async isUserAuthenticated () {
+    // trigger async function
+    // log response or catch error of fetch promise
+    const user = await Auth.fetchAsync ()
+        .then(data => {
+          console.log('from fetchAsync(), data = ', data)
+          // return data;
+          return false;
+        })
+        .catch(reason => console.log(reason.message));
+    console.log('user = ', user);
+    // return user;
+    return false 
+
+
+  } 
+
   /**
    * Authenticate a user. Save a token string in Local Storage
    *
@@ -28,25 +52,6 @@ class Auth {
     localStorage.setItem('token', token);
   }
 
-  /**
-   * Check if a user is authenticated - check if a token is saved in Local Storage
-   *
-   * @returns {boolean}
-   */
-/*   static async isUserAuthenticatedaold() {
-    // trigger async function
-    // log response or catch error of fetch promise
-    const user = await this.fetchAsync()
-        .then(data => {
-          console.log('from fetchAsync(), data = ', data)
-          return data;
-        })
-        .catch(reason => console.log(reason.message));
-    console.log('user = ', user);
-    console.log( 'undefined === true = ', undefined === true);
-    return user;
-
-  } */
   /**
    * Deauthenticate a user. Remove a token from Local Storage.
    *
@@ -66,5 +71,9 @@ class Auth {
   }
 
 }
+
+/*  NOTE: The static keyword defines a static method for a class. Static methods are 
+called without instantiating their class and cannot be called through a class instance. 
+Static methods are often used to create utility functions for an application. */
 
 export default Auth;
