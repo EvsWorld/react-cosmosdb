@@ -19,9 +19,9 @@ class Auth {
     console.log('response.statusText = ', response.statusText);
     console.log('response.type = ', response.type);
     console.log('response.url = ', response.url);
-    console.log('authed will return ', data)
+    console.log('data gotten from authed = ', data)
       const isUserLoggedIn = !isEmpty(data);
-      console.log('from authed(), isUserLoggedIn = ', isUserLoggedIn);
+      console.log(' returned from authed(), isUserLoggedIn = ', isUserLoggedIn);
       return isUserLoggedIn;
   }
     /**
