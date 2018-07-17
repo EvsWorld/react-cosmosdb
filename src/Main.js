@@ -22,7 +22,7 @@ import Heroes from './components/Heroes';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
-    Auth.isUserAuthenticated ? (
+    Auth.isUserAuthenticated() ? (
       <Component {...props} {...rest} />
     ) : (
       <Redirect to={{
@@ -35,7 +35,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 const LoggedOutRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
- Auth.isUserAuthenticated ? (
+ Auth.isUserAuthenticated() ? (
       <Redirect to={{
         pathname: '/',
         state: { from: props.location }
@@ -59,26 +59,37 @@ class Main extends Component {
       authenticated: false
     }
   };
-  
+  componentDidMount() {
+    // check if user is logged in on refresh
+    this.toggleAuthenticateStatus()
+  }
+
+  toggleAuthenticateStatus() {
+    // check authenticated status and toggle state based on that
+    this.setState({ authenticated: Auth.isUserAuthenticated() })
+  }
+
+/*  EXPERIMENT:
   // check if user is logged in on refresh
   componentDidMount() {
     // check authenticated status and toggle state based on that
     Auth.toggleAuthenticateStatus()
     .then(data => {
-      console.log('from toggleAuthenticateStatus(), data = ', data)
-      console.log('from toggleAuthenticateStatus(), !isEmpty(data) = ', !isEmpty(data));
+      console.log('from componentDidMount(), data = ', data)
       const isUserLoggedIn = !isEmpty(data);
+      console.log('from ccomponentDidMounr(), isUserLoggedIn = ', isUserLoggedIn);
+
       this.setState({ authenticated: isUserLoggedIn})
     })
     .catch(reason => console.log(reason.message));
   } 
-
+ */
   render() {
     return (
         <Router>
           <div>
-            <div className="top-bar">
-              <div className="top-bar-left">
+            <div>
+              <div>
                 <Link to="/">"/" Route Link</Link>
               </div>
               {this.state.authenticated ? (
@@ -90,19 +101,17 @@ class Main extends Component {
                 </div>
               ) : (
                 <div className="links">
-                <a href="https://localhost:3000/login"> Login?? </a>
-                  <Link to="/login"> Login?? </Link>
-                  <Link to="/login">Log in</Link>
+                  <a href="https://localhost:3000/login"> Login </a>
                   <Link to="/signup">/signup</Link>
                 </div>
               )}
 
             </div>
 
-            <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => {return false}} /> 
+            <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} /> 
             <PrivateRoute path="/dashboard" component={DashboardPage}/> 
             <PrivateRoute path="/heros" component={Heroes}/>
-            <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={() => {return false}} />
+            <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
             <LoggedOutRoute path="/signup" component={SignUpPage}/>
             <Route path="/logout" component={LogoutFunction}/>
             

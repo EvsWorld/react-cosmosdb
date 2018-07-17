@@ -2,7 +2,7 @@ import  _  from 'lodash';
 import { isEmpty } from 'lodash';
 
 class Auth {
-  static async toggleAuthenticateStatus () {
+  static async authed () {
     // await response of fetch call
     let response = await fetch('/myauth/isloggedin', 
       {
@@ -19,8 +19,10 @@ class Auth {
     console.log('response.statusText = ', response.statusText);
     console.log('response.type = ', response.type);
     console.log('response.url = ', response.url);
-    console.log('isUserAuthenticated will return ', data)
-    return data;
+    console.log('authed will return ', data)
+      const isUserLoggedIn = !isEmpty(data);
+      console.log('from authed(), isUserLoggedIn = ', isUserLoggedIn);
+      return isUserLoggedIn;
   }
     /**
    * Check if a user is authenticated - check if a token is saved in Local Storage
@@ -29,12 +31,13 @@ class Auth {
    */
 
  static async isUserAuthenticated () {
-   return await this.toggleAuthenticateStatus()
+   return await this.authed()
    .then( data => {
       console.log('from isUserAuthenticated(), data = ', data)
-      console.log('from isUserAuthenticated(), !isEmpty(data) = ', !isEmpty(data));
-      const isUserLoggedIn = !isEmpty(data);
-      return isUserLoggedIn;
+      return data;
+/*       const isUserLoggedIn = !isEmpty(data);
+      console.log('from isUserAuthenticated(), isUserLoggedIn = ', isUserLoggedIn);
+      return isUserLoggedIn; */
    } )
    .catch( reason => console.log(reason.message));
  } 
