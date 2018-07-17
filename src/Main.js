@@ -59,14 +59,16 @@ class Main extends Component {
       authenticated: false
     }
   };
-  componentDidMount() {
+  async componentDidMount() {
+    console.log('component mounted!')
     // check if user is logged in on refresh
-    this.toggleAuthenticateStatus()
+    await this.toggleAuthenticateStatus()
   }
 
    toggleAuthenticateStatus = async () => {
     // check authenticated status and toggle state based on that
-    await this.setState({ authenticated: await Auth.isUserAuthenticated() })
+    console.log('toggleAuthenticateStatus()!');
+    await this.setState({ authenticated: await Auth.authed() })
   }
 
 /*  EXPERIMENT:
