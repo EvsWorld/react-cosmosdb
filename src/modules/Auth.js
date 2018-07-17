@@ -7,7 +7,7 @@ class Auth {
     let response = await fetch('/myauth/isloggedin', 
       {
         method: "GET",
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json"}
       }
     );
     // only proceed once promise is resolved
