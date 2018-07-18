@@ -68,7 +68,7 @@ class Main extends Component {
    toggleAuthenticateStatus = async () => {
     // check authenticated status and toggle state based on that
     console.log('toggleAuthenticateStatus()!');
-    await this.setState({ authenticated: await Auth.authed() })
+     await this.setState({ authenticated: await Auth.isUserAuthenticated() })
   }
 
 /*  EXPERIMENT:

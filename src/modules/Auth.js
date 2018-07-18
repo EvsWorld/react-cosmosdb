@@ -1,17 +1,32 @@
 import  _  from 'lodash';
 import { isEmpty } from 'lodash';
+import zlFetch from "zl-fetch";
+
+
+/* 
+zlFetch("http://some-website.com")
+  .then(response => {
+    const headers = response.headers;
+    const body = response.body;
+  })
+  .catch(error => {
+    const headers = response.headers;
+    const body = response.body;
+    const status = response.status;
+  }); */
+
 
 class Auth {
   static async authed () {
     // await response of fetch call
     let response = await fetch('/myauth/isloggedin', 
       {
-        method: "GET",
-        headers: { "content-type": "application/json"}
+        headers: { "Content-Type": "application/json; charset=utf-8"}
       }
     );
     // only proceed once promise is resolved
-    let data = response.json();
+     let data = response.json();
+
     // only proceed once second promise is resolved
     console.log('\n\n\nresponse header.get(\'Content-Type\') = ', response.headers.get('Content-Type'));
     console.log('response.headers.get(\'Date\') = ', response.headers.get('Date'));
