@@ -1,6 +1,6 @@
 import  _  from 'lodash';
 import { isEmpty } from 'lodash';
-import zlFetch from "zl-fetch";
+// import zlFetch from "zl-fetch";
 
 
 /* 
@@ -19,7 +19,7 @@ zlFetch("http://some-website.com")
 class Auth {
   static async authed () {
     // await response of fetch call
-    let response = await fetch('/myauth/isloggedin', 
+    let response = await fetch('https://localhost:3000/myauth/isloggedin', 
       {
         headers: { "Content-Type": "application/json; charset=utf-8"}
       }
